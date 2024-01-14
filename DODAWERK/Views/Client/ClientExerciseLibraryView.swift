@@ -18,20 +18,27 @@ struct ClientExerciseLibraryView: View {
     
     var body: some View {
         
-        NavigationView {
+        NavigationStack {
             
-            VStack {
-                List(exercises) { exercise in
-                    NavigationLink {
-                        ClientExerciseView(exercise: exercise)
-                    } label: {
-                        ExerciseCardView(exercise: exercise)
+            ScrollView {
+                VStack {
+                    
+                    ForEach(exercises) { exercise in
+                        NavigationLink {
+                            ClientExerciseView(exercise: exercise)
+                        } label: {
+                            ExerciseCardView(exercise: exercise)
+                                .padding(.bottom, 50)
+                        }
                     }
                 }
-                .listStyle(PlainListStyle())
+                .padding(.top, 30)
             }
+            .navigationTitle("Exercise Library")
+            .padding(.horizontal)
+            
         }
-        .navigationTitle("Exercise Library")
+
     }
 }
 
